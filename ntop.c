@@ -1261,6 +1261,7 @@ static void PrintHelp(const TCHAR *argv0)
 	const help_entry Options[] = {
 		{ _T("-C"), _T("Use a monochrome color scheme.") },
 		{ _T("-h"), _T("Display this help info.") },
+        { _T("-n EXENAME\n"), _T("\tDisplay only processes contain this string.") },
 		{ _T("-p PID,PID...\n"), _T("\tShow only the given PIDs.") },
 		{ _T("-s COLUMN\n"), _T("\tSort by this column.") },
 		{ _T("-u USERNAME\n"), _T("\tDisplay only processes of this user.") },
@@ -1309,6 +1310,7 @@ int GetProcessSortTypeFromName(const TCHAR *Name, process_sort_type *Dest)
 		return TRUE;
 	} else if(!lstrcmpi(Name, _T("USER"))) {
 		*Dest = SORT_BY_USER_NAME;
+        SortOrder = ASCENDING;
 		return TRUE;
 	} else if(!lstrcmpi(Name, _T("PRI"))) {
 		*Dest = SORT_BY_PRIORITY;
@@ -1327,6 +1329,7 @@ int GetProcessSortTypeFromName(const TCHAR *Name, process_sort_type *Dest)
 		return TRUE;
 	} else if(!lstrcmpi(Name, _T("PROCESS"))) {
 		*Dest = SORT_BY_PROCESS;
+        SortOrder = ASCENDING;
 		return TRUE;
 	} else if(!lstrcmpi(Name, _T("DISK"))) {
 		*Dest = SORT_BY_DISK_USAGE;
